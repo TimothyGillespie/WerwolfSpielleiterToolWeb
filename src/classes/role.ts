@@ -1,5 +1,6 @@
 enum Role{
-    Hexe = "Hexe",
+    HX = "Hexe",
+    DB = "Dorfbewohner",
 }
 
 export default Role;
