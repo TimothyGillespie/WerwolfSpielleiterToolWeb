@@ -7,15 +7,22 @@ import UpdateParentI from "./updateParentInterface";
 interface StateI {
     playerName: String;
     processingStatus: APIStatus;
+    players: string;
 }
 
 class AddPlayerForm extends React.Component<UpdateParentI, StateI> {
-    state = {playerName: "", processingStatus: APIStatus.NothingExpected};
+
+    constructor(props: any) {
+        super(props);
+
+        this.state = {playerName: "", processingStatus: APIStatus.NothingExpected, players: ""};
+
+    }
 
     render() {
         return(
             <React.Fragment>
-                <input type="text" value={this.state.playerName} onChange={(ev: React.FormEvent<HTMLInputElement>) => this.setState({playerName: ev.currentTarget.value, processingStatus: APIStatus.NothingExpected})} />
+                <input type="text" value={String(this.state.playerName)} onChange={(ev: React.FormEvent<HTMLInputElement>) => this.setState({playerName: ev.currentTarget.value, processingStatus: APIStatus.NothingExpected})} />
                 <button onClick={() => this.callCreateAPI()}>Erstellen</button><br/><br/>
                 {this.displayPlayerCreationFeedback()}
             </React.Fragment>
