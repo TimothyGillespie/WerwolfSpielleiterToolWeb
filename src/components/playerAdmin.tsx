@@ -1,17 +1,21 @@
-    import React from "react";
+import React from "react";
 
 import Player from "../classes/player";
 
 import AddPlayerForm from "./addPlayerForm";
 
+import {deletePlayer} from "../utils/databaseAPIHandler";
+
 interface Props {
+    registeredPlayers: Player[];
     playersInTheGame: Player[];
-    allPlayers: Player[];
+    parentForceUpdate(): void;
 }
 
 class PlayerAdmin extends React.Component<Props, {}> {
 
     render() {
+
         return <React.Fragment>
             {this.renderPlayersNotInTheGame()}
 
@@ -23,10 +27,8 @@ class PlayerAdmin extends React.Component<Props, {}> {
 
     private renderPlayersNotInTheGame(): JSX.Element {
 
-        // Lists all players not in the game. When clicked on, it will add to the game
 
-
-        return <div></div>;
+        return <div>{this.renderPlayerlist(this.props.registeredPlayers)}</div>;
     }
 
     private renderPlayerlistInTheGame(): JSX.Element {
@@ -36,6 +38,27 @@ class PlayerAdmin extends React.Component<Props, {}> {
         return <div></div>;
     }
 
+    private renderPlayerlist(players: Player[]): JSX.Element {
+        const playerList: JSX.Element[] = [];
+
+
+        players.forEach((player: Player) => {
+            playerList.push(<tr><td className="playerEntry" onClick={() => this.tableClickHandler(player.getID())}>{player.getName()}</td></tr>);
+        });
+
+        return <table>
+            <th><td>Nicht teilnehmende Spieler</td></th>
+            {playerList}
+        </table>;
+    }
+
+    private tableClickHandler(playerID: number): void {
+        deletePlayer(playerID);
+        this.props.parentForceUpdate();
+    }
+
 }
+
+
 
 export default PlayerAdmin;
