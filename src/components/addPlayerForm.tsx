@@ -1,42 +1,43 @@
 import React from "react";
 
+import {APIStatus, createPlayer} from "../utils/databaseAPIHandler";
+
 import UpdateParentI from "./updateParentInterface";
 
 interface StateI {
     playerName: String;
-    playerExistsAlready: boolean;
+    processingStatus: APIStatus;
+    players: string;
 }
 
 class AddPlayerForm extends React.Component<UpdateParentI, StateI> {
-    state = {playerName: "", playerExistsAlready: false};
+
+    constructor(props: any) {
+        super(props);
+
+        this.state = {playerName: "", processingStatus: APIStatus.NothingExpected, players: ""};
+
+    }
 
     render() {
         return(
             <React.Fragment>
-                <input type="text" value={this.state.playerName} onChange={(ev: React.FormEvent<HTMLInputElement>) => this.setState({playerName: ev.currentTarget.value})} />
-                <button onClick={(_: any) => this.createPlayer()}>Erstellen</button><br/><br/>
-                {this.displayPlayerExistsError()}
+                <input type="text" value={String(this.state.playerName)} onChange={(ev: React.FormEvent<HTMLInputElement>) => this.setState({playerName: ev.currentTarget.value, processingStatus: APIStatus.NothingExpected})} />
+                <button onClick={() => this.callCreateAPI()}>Erstellen</button><br/><br/>
+                {this.displayPlayerCreationFeedback()}
             </React.Fragment>
         )
     }
 
-
-    private createPlayer(): void {
-        const playerName: String = this.state.playerName;
-
-        //Check if playerName exists in database.
-
-        //If yes display an error (by setting an error variable to true)
-        this.setState({playerExistsAlready: true});
+    private async callCreateAPI() {
+        this.setState({processingStatus: APIStatus.Processing});
+        const newStatus: APIStatus = await createPlayer(this.state.playerName);
+        this.setState({processingStatus: newStatus});
     }
 
-    private displayPlayerExistsError(): JSX.Element {
-        if(this.state.playerExistsAlready) {
-            return <div className="errorMsg"> Player {this.state.playerName} exists already</div>;
-        }
 
-        // Empty return
-        return <React.Fragment />;
+    private displayPlayerCreationFeedback(): JSX.Element {
+        return <React.Fragment>{this.state.processingStatus}</React.Fragment>;
     }
 
 }
