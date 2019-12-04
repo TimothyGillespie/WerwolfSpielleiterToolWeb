@@ -91,7 +91,7 @@ async function deletePlayer(playerID: number): Promise<APIStatus> {
 }
 
 // This would be handy if it could return a JSON later.
-async function fetchPlayers(): Promise<string> {
+async function fetchPlayers(): Promise<JSON> {
 
     const body = "action=fetch";
 
@@ -105,7 +105,7 @@ async function fetchPlayers(): Promise<string> {
 
     const csv: string = await response.text();
 
-    return csv;
+    return csvToJSON(csv);
 }
 
 // This doesn't work as inteded yet it seems.
@@ -131,7 +131,6 @@ function csvToJSON(csv: string): JSON {
 
   }
 
-  //return result; //JavaScript object
   return JSON.parse(JSON.stringify(result));
 }
 
