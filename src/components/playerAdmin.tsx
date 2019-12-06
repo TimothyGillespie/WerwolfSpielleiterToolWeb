@@ -10,6 +10,7 @@ interface Props {
     registeredPlayers: Player[];
     playersInTheGame: Player[];
     parentSetState(newState: any): void;
+    fetchPlayers(): void;
 }
 
 class PlayerAdmin extends React.Component<Props, {}> {
@@ -21,7 +22,7 @@ class PlayerAdmin extends React.Component<Props, {}> {
 
             {this.renderPlayerlistInTheGame()}
 
-            <AddPlayerForm parentSetState={(newState) => this.setState(newState)}/>
+            <AddPlayerForm {... this.props}/>
         </React.Fragment>
     }
 

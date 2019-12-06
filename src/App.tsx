@@ -12,7 +12,6 @@ import {fetchPlayers} from "./utils/databaseAPIHandler";
 interface MasterState {
     registeredPlayers: Player[];
     playersInTheGame: Player[];
-    lastID: number;
 
 }
 
@@ -21,17 +20,10 @@ class App extends React.Component<{}, MasterState> {
     state = {
         registeredPlayers: [],
         playersInTheGame: [],
-        lastID: -1,
     }
 
     async componentDidMount() {
-        const registeredPlayersJSON: any = await fetchPlayers();
-        const registeredPlayers: Player[] = [];
-        registeredPlayersJSON.forEach((player: any) =>  {
-            registeredPlayers.push(new Player(player));
-        });
-
-        this.setState({registeredPlayers});
+        await this.fetchPlayers();
     }
 
     render() {
@@ -44,12 +36,22 @@ class App extends React.Component<{}, MasterState> {
                 <Switch>
                     <Route exact path="/" component={Welcome} />
                     <Route path="/players">
-                        <PlayerAdmin key={1} parentSetState = {(newState: any) => this.setState(newState)} {...this.state} />
+                        <PlayerAdmin key={1} fetchPlayers={() => this.fetchPlayers()} parentSetState = {(newState: any) => this.setState(newState)} {...this.state} />
                     </Route>
                 </Switch>
             </Router>
         </div>
       );
+  }
+
+  private async fetchPlayers() {
+      const registeredPlayersJSON: any = await fetchPlayers();
+      const registeredPlayers: Player[] = [];
+      registeredPlayersJSON.forEach((player: any) =>  {
+          registeredPlayers.push(new Player(player));
+      });
+
+      this.setState({registeredPlayers});
   }
 
 }
