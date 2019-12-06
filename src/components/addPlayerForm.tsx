@@ -33,6 +33,7 @@ class AddPlayerForm extends React.Component<UpdateParentI, StateI> {
         this.setState({processingStatus: APIStatus.Processing});
         const newStatus: APIStatus = await createPlayer(this.state.playerName);
         this.setState({processingStatus: newStatus});
+        this.props.parentSetState({text: "oh"});
     }
 
 

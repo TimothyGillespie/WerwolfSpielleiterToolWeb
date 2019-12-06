@@ -9,7 +9,7 @@ import {deletePlayer} from "../utils/databaseAPIHandler";
 interface Props {
     registeredPlayers: Player[];
     playersInTheGame: Player[];
-    parentForceUpdate(): void;
+    parentSetState(newState: any): void;
 }
 
 class PlayerAdmin extends React.Component<Props, {}> {
@@ -21,7 +21,7 @@ class PlayerAdmin extends React.Component<Props, {}> {
 
             {this.renderPlayerlistInTheGame()}
 
-            <AddPlayerForm updateParent={this.setState}/>
+            <AddPlayerForm parentSetState={(newState) => this.setState(newState)}/>
         </React.Fragment>
     }
 
@@ -43,18 +43,23 @@ class PlayerAdmin extends React.Component<Props, {}> {
 
 
         players.forEach((player: Player) => {
-            playerList.push(<tr><td className="playerEntry" onClick={() => this.tableClickHandler(player.getID())}>{player.getName()}</td></tr>);
+            playerList.push(<tr key = {player.getID()} ><td className="playerEntry" onClick={() => this.tableClickHandler(player.getID())}>{player.getName()}</td></tr>);
         });
 
         return <table>
-            <th><td>Nicht teilnehmende Spieler</td></th>
-            {playerList}
+            <thead>
+                <tr><th>Nicht teilnehmende Spieler</th></tr>
+            </thead>
+            <tbody>
+                {playerList}
+            </tbody>
         </table>;
     }
 
     private tableClickHandler(playerID: number): void {
         deletePlayer(playerID);
-        this.props.parentForceUpdate();
+        const registeredPlayers = this.props.registeredPlayers.filter((player: Player) => player.getID() !== playerID);
+        this.props.parentSetState({registeredPlayers: registeredPlayers});
     }
 
 }

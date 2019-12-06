@@ -1,5 +1,5 @@
 interface UpdateParentI {
-    updateParent(newState: any): void;
+    parentSetState(newState: any): void;
 }
 
 export default UpdateParentI;
