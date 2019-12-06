@@ -1,0 +1,11 @@
+table:hover {
+    cursor: default;
+}
+
+td:hover {
+    background-color: yellow;
+}
+
+td {
+    background-color: #DCDCDC;
+}

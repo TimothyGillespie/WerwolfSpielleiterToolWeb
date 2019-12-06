@@ -6,6 +6,8 @@ import AddPlayerForm from "./addPlayerForm";
 
 import {deletePlayer} from "../utils/databaseAPIHandler";
 
+import "./playerAdmin.css";
+
 interface Props {
     registeredPlayers: Player[];
     playersInTheGame: Player[];
