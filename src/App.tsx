@@ -28,7 +28,6 @@ class App extends React.Component<{}, MasterState> {
 
     render() {
 
-        console.log(this.state.registeredPlayers);
       return (
         <div className="App">
             <Router>
