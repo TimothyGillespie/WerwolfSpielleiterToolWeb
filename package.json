@@ -27,7 +27,7 @@
   },
   "lint-staged": {
     "*.ts": [
-        "eslint"
+      "eslint"
     ]
   },
   "browserslist": {
@@ -45,6 +45,8 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.9.0",
     "@typescript-eslint/parser": "^2.9.0",
-    "eslint": "^6.7.1"
+    "css-loader": "^3.2.1",
+    "eslint": "^6.7.1",
+    "style-loader": "^1.0.1"
   }
 }

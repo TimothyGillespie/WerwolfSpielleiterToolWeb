@@ -22,7 +22,7 @@ enum APIStatus {
 
 async function createPlayer(newPlayerName: String): Promise<APIStatus> {
 
-    if(newPlayerName == "") {
+    if(newPlayerName === "") {
         return APIStatus.EmptyInputError;
     }
 

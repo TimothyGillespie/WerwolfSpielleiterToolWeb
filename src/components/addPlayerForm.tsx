@@ -4,13 +4,17 @@ import {APIStatus, createPlayer} from "../utils/databaseAPIHandler";
 
 import UpdateParentI from "./updateParentInterface";
 
+interface PropsI extends UpdateParentI {
+    fetchPlayers(): void;
+}
+
 interface StateI {
     playerName: String;
     processingStatus: APIStatus;
     players: string;
 }
 
-class AddPlayerForm extends React.Component<UpdateParentI, StateI> {
+class AddPlayerForm extends React.Component<PropsI, StateI> {
 
     constructor(props: any) {
         super(props);
@@ -32,6 +36,10 @@ class AddPlayerForm extends React.Component<UpdateParentI, StateI> {
     private async callCreateAPI() {
         this.setState({processingStatus: APIStatus.Processing});
         const newStatus: APIStatus = await createPlayer(this.state.playerName);
+        if(newStatus == APIStatus.SuccessfullyAdded) {
+            this.props.fetchPlayers();
+        }
+
         this.setState({processingStatus: newStatus});
     }
 

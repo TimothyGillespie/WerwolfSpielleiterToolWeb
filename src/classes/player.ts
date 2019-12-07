@@ -1,12 +1,18 @@
 class Player {
-    name: String;
+    id: number;
+    name: string;
 
 
-    constructor(name: String) {
-        this.name = name;
+    constructor(player: {playerID: number, name: string}) {
+        this.id = player.playerID;
+        this.name = player.name;
     }
 
-    public getName(): String {
+    public getID(): number {
+        return this.id;
+    }
+
+    public getName(): string {
         return this.name;
     }
 }
