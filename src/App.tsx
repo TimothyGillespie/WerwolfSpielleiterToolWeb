@@ -27,6 +27,28 @@ class App extends React.Component<{}, MasterState> {
         registeredPlayers: [],
         playersInTheGame: new Map<Player, Status>(),
         upcomingGamePhases: [],
+
+        // Game variables
+        turnCounter: 0,
+        liebende: [],
+        mussRaus: null,
+        protectedThisNight: null,
+        priesterProtected: null,
+        prinz: null,
+        unruheGestifted: false,
+
+        rostigeLanzeRevengeNextNight: false,
+        harterBurscheDiesNextNight: false,
+        aussaetzigerGetsRoleNextNight: false,
+        oldmanDiedOnce: false,
+
+        // Hexentränke
+        hexeGoodPotionAvailable: false,
+        hexeBadPotionAvailable: false,
+
+        //Magiertränke
+        magierGoodPotionAvailable: false,
+        magierBadPotionAvailable: false,
     }
 
     async componentDidMount() {
@@ -64,7 +86,8 @@ class App extends React.Component<{}, MasterState> {
   }
 
   private nextPhase(): void {
-      
+      const cut: React.ComponentType<GamePhasePropsI>[] = this.state.upcomingGamePhases.slice(1);
+      this.setState({upcomingGamePhases: cut});
   }
 
 }
