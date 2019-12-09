@@ -1,21 +1,38 @@
 import React from "react";
 
 import Player from "../classes/player";
+import Role from "../classes/role";
+import Status from "../classes/status";
 
 import AddPlayerForm from "./addPlayerForm";
 
 import {deletePlayer} from "../utils/databaseAPIHandler";
+import cloneMap from "../utils/cloneMap";
 
 import "./playerAdmin.css";
 
-interface Props {
+interface PropsI {
     registeredPlayers: Player[];
-    playersInTheGame: Player[];
+    playersInTheGame: Map<Player, Status>;
     parentSetState(newState: any): void;
     fetchPlayers(): void;
 }
 
-class PlayerAdmin extends React.Component<Props, {}> {
+interface StateI {
+    listPlayersInTheGame: Player[];
+}
+
+class PlayerAdmin extends React.Component<PropsI, StateI> {
+
+    constructor(props: PropsI) {
+        super(props);
+
+        const listPlayersInTheGame: Player[] = [];
+        this.props.playersInTheGame.forEach((_, player: Player) =>  listPlayersInTheGame.push(player));
+
+        this.state = {listPlayersInTheGame};
+
+    }
 
     render() {
 
@@ -31,12 +48,24 @@ class PlayerAdmin extends React.Component<Props, {}> {
         </React.Fragment>
     }
 
+    // This should probably be replaced by a memoization technique as recommended by the react developers
+    // The unsafeness of this life-cycle function requires the async function calls below
+    UNSAFE_componentWillReceiveProps() {
+        const listPlayersInTheGame: Player[] = [];
+        this.props.playersInTheGame.forEach((_, player: Player) =>  listPlayersInTheGame.push(player));
+
+        this.setState({listPlayersInTheGame});
+    }
+
     private renderPlayersNotInTheGame(): JSX.Element {
+        const playersInTheGameList: Player[] = [];
+
+        this.props.playersInTheGame.forEach((_, player: Player) =>  playersInTheGameList.push(player));
 
         const notInTheGame: Player[] = this.props.registeredPlayers
             .filter((playerElement: Player) =>
-                !this.props.playersInTheGame
-                    .find((playerElementInner => playerElementInner.getID() == playerElement.getID())));
+                !this.state.listPlayersInTheGame
+                    .find((playerElementInner: Player) => playerElementInner.getID() === playerElement.getID()));
 
         return <div>{this.renderPlayerlist(notInTheGame, "Nicht teilnehmende Spieler", (player: Player) => this.addToGame(player))}</div>;
     }
@@ -45,7 +74,7 @@ class PlayerAdmin extends React.Component<Props, {}> {
 
         return <div>
             {this.renderPlayerlist(
-                this.props.playersInTheGame,
+                this.state.listPlayersInTheGame,
                 "Teilnehmende Spieler",
                 (player:Player) =>
                     {this.removeFromGame(player)})}
@@ -80,33 +109,36 @@ class PlayerAdmin extends React.Component<Props, {}> {
         </table>;
     }
 
-    private removePlayerFromDatabase(player: Player): void {
+    private async removePlayerFromDatabase(player: Player): Promise<void> {
         deletePlayer(player.getID());
         const registeredPlayers = this.props.registeredPlayers.filter((playerElement: Player) => playerElement.getID() !== player.getID());
-        const playersInTheGame = this.props.playersInTheGame
+        const playersInTheGame = this.state.listPlayersInTheGame
           .filter((playerElement: Player) => playerElement.getID() !== player.getID())
 
-        this.props.parentSetState({registeredPlayers, playersInTheGame});
+        // I am not quiet sure on why it behaves this way, but the next await is necessary to gurantee a proper rendering.
+        // It seems passing in the new value won't update the children. So it is waiting until the update is done and
+        // triggers a refresh by doing an empty update.
+        await this.props.parentSetState({registeredPlayers, playersInTheGame});
+        this.props.parentSetState({});
     }
 
-    private removeFromGame(player:Player): void {
-        const playersInTheGame = this.props.playersInTheGame.slice().filter((playerElement: Player) => playerElement.getID() !== player.getID());
+    private async removeFromGame(player:Player): Promise<void> {
+        const clonedMap = cloneMap(this.props.playersInTheGame);
+        clonedMap.delete(player);
 
-        console.log(playersInTheGame);
-        this.props.parentSetState({playersInTheGame: playersInTheGame});
+        // See "removePlayerFromDatabase()"
+        await this.props.parentSetState({playersInTheGame: clonedMap});
+        this.props.parentSetState({});
     }
 
-    private addToGame(player:Player): void {
-        if(this.props.playersInTheGame.find((playerElement: Player) => playerElement.getID() === player.getID())) {
-            return;
-        }
+    private async addToGame(player:Player): Promise<void> {
+        const playersInTheGame: Map<Player, Status> = new Map(this.props.playersInTheGame);
+        playersInTheGame.set(player, new Status(Role.DB));
 
-        const playersInTheGame = this.props.playersInTheGame.slice();
-        playersInTheGame.push(player);
+        // See "removePlayerFromDatabase()"
+        await this.props.parentSetState({playersInTheGame});
         this.props.parentSetState({playersInTheGame});
     }
 }
-
-
 
 export default PlayerAdmin;

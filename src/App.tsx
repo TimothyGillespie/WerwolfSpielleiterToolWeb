@@ -2,16 +2,22 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import Player from "./classes/player";
+import Status from "./classes/status";
+
+import GamePhasePropsI from "./components/gamePhases/gamePhaseInterface";
+
 
 import Navigation from "./components/navigation";
 import Welcome from "./components/welcome";
 import PlayerAdmin from "./components/playerAdmin";
+import Game from "./components/game/game";
 
 import {fetchPlayers} from "./utils/databaseAPIHandler";
 
 interface MasterState {
     registeredPlayers: Player[];
-    playersInTheGame: Player[];
+    playersInTheGame: Map<Player, Status>;
+    upcomingGamePhases: React.ComponentType<GamePhasePropsI>[];
 
 }
 
@@ -19,7 +25,8 @@ class App extends React.Component<{}, MasterState> {
 
     state = {
         registeredPlayers: [],
-        playersInTheGame: [],
+        playersInTheGame: new Map<Player, Status>(),
+        upcomingGamePhases: [],
     }
 
     async componentDidMount() {
@@ -35,7 +42,10 @@ class App extends React.Component<{}, MasterState> {
                 <Switch>
                     <Route exact path="/" component={Welcome} />
                     <Route path="/players">
-                        <PlayerAdmin key={1} fetchPlayers={() => this.fetchPlayers()} parentSetState = {(newState: any) => this.setState(newState)} {...this.state} />
+                        <PlayerAdmin fetchPlayers={() => this.fetchPlayers()} parentSetState = {(newState: any) => this.setState(newState)} {...this.state} />
+                    </Route>
+                    <Route path="/game">
+                        <Game parentSetState={(newState: any) => this.setState(newState)} nextPhase={() => this.nextPhase()} {...this.state}/>
                     </Route>
                 </Switch>
             </Router>
@@ -51,6 +61,10 @@ class App extends React.Component<{}, MasterState> {
       });
 
       this.setState({registeredPlayers});
+  }
+
+  private nextPhase(): void {
+      
   }
 
 }

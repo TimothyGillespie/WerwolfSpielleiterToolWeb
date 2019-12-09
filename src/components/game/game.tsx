@@ -1,42 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import Status from "../../classes/status";
-import Player from "../../classes/status";
+import Player from "../../classes/player";
+import Role from "../../classes/role";
 
-interface State {
-    players: Map<Player, Status>;
+import GameStartScreen from "./gameStartScreen";
 
+import GamePhasePropsI from "../gamePhases/gamePhaseInterface";
 
+interface PropsI extends GamePhasePropsI {
+    parentSetState(newState: any): void;
+    playersInTheGame: Map<Player, Status>;
+    upcomingGamePhases: React.ComponentType<GamePhasePropsI>[];
 }
 
-interface Props {
+class Game extends React.Component<PropsI, {}> {
 
-}
+    private currentPhase: React.ComponentType<GamePhasePropsI> = GameStartScreen;
 
-class Game extends React.Component<State, Props> {
+    render() {
 
+        const firstElement = this.props.upcomingGamePhases[0];
 
-    // Game variables
-    private turnCounter: number = 0;
-    private liebende: Player[] = [];
-    private mussRaus: Player | null = null;
-    private protectedThisNight: Player | null = null;
-    private priesterProtected: Player | null = null;
-    private prinz: Player | null = null;
-    private unruheGestifted: boolean = false;
+        if(firstElement) {
+            this.currentPhase = this.props.upcomingGamePhases[0];
+        }
+        
+        return <div>
 
+        {< this.currentPhase {...this.props} />}
 
-    private rostigeLanzeRevengeNextNight: boolean = false;
-    private harterBurscheDiesNextNight: boolean = false
-    private aussaetzigerGetsRoleNextNight: boolean = false;
-    private oldmanDiedOnce: boolean = false;
-
-    // Hexentränke
-    private hexeGoodPotionAvailable: boolean = true;
-    private hexeBadPotionAvailable: boolean = true;
-
-    //Magiertränke
-    private magierGoodPotionAvailable: boolean = true;
-    private magierBadPotionAvailable: boolean = true;
-
+        </div>;
     }
+
+
+}
+
+export default Game;
