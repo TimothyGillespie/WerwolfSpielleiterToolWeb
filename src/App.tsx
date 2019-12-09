@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import Player from "./classes/player";
+import Status from "./classes/status";
 
 import Navigation from "./components/navigation";
 import Welcome from "./components/welcome";
@@ -11,7 +12,7 @@ import {fetchPlayers} from "./utils/databaseAPIHandler";
 
 interface MasterState {
     registeredPlayers: Player[];
-    playersInTheGame: Player[];
+    playersInTheGame: Map<Player, Status>;
 
 }
 
@@ -19,7 +20,7 @@ class App extends React.Component<{}, MasterState> {
 
     state = {
         registeredPlayers: [],
-        playersInTheGame: [],
+        playersInTheGame: new Map<Player, Status>(),
     }
 
     async componentDidMount() {
@@ -35,7 +36,7 @@ class App extends React.Component<{}, MasterState> {
                 <Switch>
                     <Route exact path="/" component={Welcome} />
                     <Route path="/players">
-                        <PlayerAdmin key={1} fetchPlayers={() => this.fetchPlayers()} parentSetState = {(newState: any) => this.setState(newState)} {...this.state} />
+                        <PlayerAdmin fetchPlayers={() => this.fetchPlayers()} parentSetState = {(newState: any) => this.setState(newState)} {...this.state} />
                     </Route>
                 </Switch>
             </Router>
