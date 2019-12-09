@@ -2,18 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Status from "../../classes/status";
 import Player from "../../classes/status";
+import Role from "../../classes/role";
 
-interface State {
+interface StateI {
+
+}
+
+interface PropsI {
     players: Map<Player, Status>;
-
-
 }
 
-interface Props {
-
-}
-
-class Game extends React.Component<State, Props> {
+class Game extends React.Component<StateI, PropsI> {
 
 
     // Game variables
@@ -38,5 +37,14 @@ class Game extends React.Component<State, Props> {
     //Magiertränke
     private magierGoodPotionAvailable: boolean = true;
     private magierBadPotionAvailable: boolean = true;
+
+
+
+    private getPeopleOfRole(role: Role): Player[] {
+        const result: Player[] = [];
+
+
+        return result;
+    }
 
     }
