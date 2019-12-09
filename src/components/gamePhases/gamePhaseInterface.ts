@@ -3,6 +3,8 @@ import Status from "../../classes/status";
 
 interface GamePhasePropsI {
     parentSetState?(newState: any): void;
+    nextPhase(): void;
+
     playersInTheGame?: Map<Player, Status>;
 
     // Game variables
