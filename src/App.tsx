@@ -7,6 +7,7 @@ import Status from "./classes/status";
 import Navigation from "./components/navigation";
 import Welcome from "./components/welcome";
 import PlayerAdmin from "./components/playerAdmin";
+import Game from "./components/game/game";
 
 import {fetchPlayers} from "./utils/databaseAPIHandler";
 
@@ -37,6 +38,9 @@ class App extends React.Component<{}, MasterState> {
                     <Route exact path="/" component={Welcome} />
                     <Route path="/players">
                         <PlayerAdmin fetchPlayers={() => this.fetchPlayers()} parentSetState = {(newState: any) => this.setState(newState)} {...this.state} />
+                    </Route>
+                    <Route path="/game">
+                        <Game parentSetState={(newState: any) => this.setState(newState)} upcomingGamePhases= {[]} {...this.state}/>
                     </Route>
                 </Switch>
             </Router>
