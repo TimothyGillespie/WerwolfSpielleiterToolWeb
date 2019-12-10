@@ -30,6 +30,8 @@ class App extends React.Component<{}, MasterState> {
         upcomingGamePhases: [],
 
         // Game variables
+        diesTonight: [],
+
         turnCounter: 0,
         liebende: [],
         mussRaus: null,
