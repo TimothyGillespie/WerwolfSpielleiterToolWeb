@@ -5,7 +5,7 @@ import Role from "../../classes/role";
 
 import GamePhasePropsI from "./gamePhaseInterface";
 import renderPlayerList from "../../utils/renderPlayerList";
-import getPeopleOfRole from "../../utils/gameBased/getPeopleOfRole";
+import getPlayersOfRole from "../../utils/gameBased/getPlayersOfRole";
 import changePlayerRole from "../../utils/gameBased/changePlayerRole";
 
 import difference from "../../utils/arrayHandling/difference";
@@ -20,10 +20,9 @@ class DoppelgangerChoses extends React.Component<GamePhasePropsI, StateI> {
     state = {chose: false};
 
     render() {
-        console.log(getPeopleOfRole(this.props.playersInTheGame, Role.D));
         if(this.state.chose) {
             return <div><button onClick={() => this.props.nextPhase()}>Weiter</button></div>;
-        } else if(getPeopleOfRole(this.props.playersInTheGame, Role.D).length === 0){
+        } else if(getPlayersOfRole(this.props.playersInTheGame, Role.D).length === 0){
             return <div>{this.renderPickDoppelganger()}</div>
         } else {
             return <div>{this.renderChoice()}</div>;
@@ -35,7 +34,7 @@ class DoppelgangerChoses extends React.Component<GamePhasePropsI, StateI> {
     private renderChoice(): JSX.Element {
         const choices: Player[] = difference(
             mapKeysToArray(this.props.playersInTheGame),
-            getPeopleOfRole(this.props.playersInTheGame, Role.D)
+            getPlayersOfRole(this.props.playersInTheGame, Role.D)
         );
 
         return renderPlayerList(
@@ -52,7 +51,7 @@ class DoppelgangerChoses extends React.Component<GamePhasePropsI, StateI> {
     private renderPickDoppelganger(): JSX.Element {
         return renderPlayerList(
             // The role Dorfbewohner is the default one, so it can be assumed that people with no role are dorfbewohner
-            getPeopleOfRole(this.props.playersInTheGame, Role.DB),
+            getPlayersOfRole(this.props.playersInTheGame, Role.DB),
             "Wer ist der Doppelgänger?",
             (player: Player) => {
                 changePlayerRole(this.props.playersInTheGame, player,  Role.D);

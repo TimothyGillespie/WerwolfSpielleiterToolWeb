@@ -3,7 +3,7 @@ import Role from "../../classes/role";
 import Status from "../../classes/status";
 
 
-function getPeopleOfRole(playersInTheGame: Map<Player, Status>, role: Role): Player[] {
+function getPlayersOfRole(playersInTheGame: Map<Player, Status>, role: Role): Player[] {
 
     const result: Player[] = [];
 
@@ -17,4 +17,4 @@ function getPeopleOfRole(playersInTheGame: Map<Player, Status>, role: Role): Pla
 
 }
 
-export default getPeopleOfRole;
+export default getPlayersOfRole;

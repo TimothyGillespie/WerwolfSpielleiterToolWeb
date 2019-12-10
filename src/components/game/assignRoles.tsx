@@ -5,7 +5,7 @@ import Role from "../../classes/role";
 
 import GamePhasePropsI from "../gamePhases/gamePhaseInterface";
 import renderPlayerList from "../../utils/renderPlayerList";
-import getPeopleOfRole from "../../utils/gameBased/getPeopleOfRole";
+import getPlayersOfRole from "../../utils/gameBased/getPlayersOfRole";
 import changePlayerRole from "../../utils/gameBased/changePlayerRole";
 
 interface StateI {
@@ -34,7 +34,7 @@ class AssignRoles extends React.Component<GamePhasePropsI, StateI> {
         for(let item in Role) {
             listOfLists.push(
                 renderPlayerList(
-                    getPeopleOfRole(
+                    getPlayersOfRole(
                         this.props.playersInTheGame,
                         //@ts-ignore
                         Role[item]
