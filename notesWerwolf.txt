@@ -1,0 +1,62 @@
+Rollen:
+
+Dorfbewohner
+Hexe -> Tränke (2)
+Seher
+Seherlehrling -> Wenn Seher tot, dann Sehereigenschaften
+Amor -> Sucht erste Nacht Liebende aus
+Bärchenführer -> Brummt
+Alte Vettel -> Nachts jemanden aussuchen und am Tag vor die Tür setzen
+Alter Mann -> Lebt zweimal, wenn die Werwölfe ihn töten wollen.
+Aussätzige -> Werwölfe töten in der nächsten Nacht niemanden
+Harter Bursche -> Stirbt erst eine Nacht später
+Jäger -> Beim sterben, darf er jemanden mitnehmen.
+Leibwächter -> Schützt jemanden für die Nacht
+Magier -> Hexeneigenschaften
+Priester -> Sucht sich jemand einen aus, der nachts nicht mehr getötet werden kann, solange er lebt
+Ritter mit der rostigen Lanze -> Nimmt beim sterben in der nächsten Nacht den nächsten Werwolf im Uhrzeigersinn mit.
+(Prinz) -> Kann nicht gelyncht werden
+Trunkenbold -> Bekommt erst nach dem dritten Tag seine Rolle
+Unruhestifterin -> Darf einmal pro Spiele entscheiden, dass am nächsten Tag zwei gelyncht werden
+
+
+Werwolf -> ist ein werwolf 
+Urwolf -> Einmal im Spiel, darf er einen Spieler zum Wolf machen
+Wolfsjunges -> Wenn er stirbt, dürfen die Werwölfe dann zwei töten
+
+Einsamer Wolf -> gewinnt, wenn er als letzter überlebt
+
+Kommt drauf an:
+Verfluchter
+Doppelgänger -> Jemanden aussuchen, wenn tot dann Rolle übernehmen
+
+//Vampir -> Wählen jemanden der zeitversetzt stirbt.
+
+Gerber -> Muss sterben
+
+(Bürgermeister)
+
+
+Ablauf:
+
+1. Nacht
+- Amor such liebende
+- Doppelgängerin sucht sich einen Spieler raus.
+- Werwölfe schauen sich an
+
+
+Normale Nacht:
+- Leibwächter schützt jemanden, den er in der vorrangegangen Nacht nicht geschützt hat.
+- Werwölfe wachen auf
+- Urwolf, entscheidet ob Umwandlung (1x nur)
+- Hexe (Trank einsetzen, auch parallel)
+- Magier (Same)
+//- Vampire (wählen)
+- Seherin darf jemanden nachschauen/fragen (bzw Seherlehrling)
+- Alte Vettel sucht aus
+
+Tag:
+- Bekanntgabe wer starb
+- Diskussionen
+- Lynchen
+// - Vampiertot bekanntgabe
