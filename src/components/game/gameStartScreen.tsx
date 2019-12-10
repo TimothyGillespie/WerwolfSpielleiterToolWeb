@@ -4,13 +4,14 @@ import GamePhasePropsI from "../gamePhases/gamePhaseInterface";
 import AmorChoosesLovers from "../gamePhases/amorChoosesLovers";
 import DoppelgangerChoses from "../gamePhases/doppelgangerChoses";
 import WerwolvesSeeEachOther from "../gamePhases/werwolvesSeeEachOther";
+import LeibwachterProtects from "../gamePhases/leibwachterProtects";
 
 class GameStartScreen extends React.Component<GamePhasePropsI, {}> {
 
 
     render() {
         return <div>
-        Willkommen zum Spiel
+        Willkommen zum Spiel<br />
         <button onClick={() => this.startGame()}> Starten </button>
         </div>;
     }
@@ -21,6 +22,8 @@ class GameStartScreen extends React.Component<GamePhasePropsI, {}> {
             AmorChoosesLovers,
             DoppelgangerChoses,
             WerwolvesSeeEachOther,
+            LeibwachterProtects,
+
         ];
         this.props.parentSetState!({upcomingGamePhases: firstNight});
     }
