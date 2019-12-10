@@ -5,7 +5,7 @@ import Role from "../../classes/role";
 
 import GamePhasePropsI from "./gamePhaseInterface";
 import renderPlayerList from "../../utils/renderPlayerList";
-import getPlayersOfRole from "../../utils/gameBased/getPlayersOfRole";
+import getAlivePlayersOfRole from "../../utils/gameBased/getAlivePlayersOfRole";
 
 import difference from "../../utils/arrayHandling/difference";
 import mapKeysToArray from "../../utils/mapKeysToArray";
@@ -15,13 +15,13 @@ class LeibwachterProtects extends React.Component<GamePhasePropsI, {}> {
 
     render() {
         return <div>
-            Wenn wird der Leibwächter {(getPlayersOfRole(this.props.playersInTheGame, Role.L)[0]).getName()}?
+            Wenn wird der Leibwächter {(getAlivePlayersOfRole(this.props.playersInTheGame, Role.L)[0]).getName()}?
             <br />
             {renderPlayerList(
                 difference(
                     mapKeysToArray(this.props.playersInTheGame),
                     //protectedThisNight is here now the last night
-                    getPlayersOfRole(this.props.playersInTheGame, Role.L).concat(this.props.protectedThisNight || [])
+                    getAlivePlayersOfRole(this.props.playersInTheGame, Role.L).concat(this.props.protectedThisNight || [])
                 ),
                 "Wähle weise Leibwächter",
                 (player: Player) => {
