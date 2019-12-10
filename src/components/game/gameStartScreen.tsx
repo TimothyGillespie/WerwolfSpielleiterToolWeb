@@ -5,6 +5,8 @@ import AmorChoosesLovers from "../gamePhases/amorChoosesLovers";
 import DoppelgangerChoses from "../gamePhases/doppelgangerChoses";
 import WerwolvesSeeEachOther from "../gamePhases/werwolvesSeeEachOther";
 import LeibwachterProtects from "../gamePhases/leibwachterProtects";
+import WerwolveChooseKill from "../gamePhases/werwolvesChooseKill";
+import UrwolfMayTransform from "../gamePhases/UrwolfMayTransform";
 
 class GameStartScreen extends React.Component<GamePhasePropsI, {}> {
 
@@ -23,7 +25,9 @@ class GameStartScreen extends React.Component<GamePhasePropsI, {}> {
             DoppelgangerChoses,
             WerwolvesSeeEachOther,
             LeibwachterProtects,
-
+            WerwolveChooseKill,
+            // Not yet implemented
+            // UrwolfMayTransform,
         ];
         this.props.parentSetState!({upcomingGamePhases: firstNight});
     }
