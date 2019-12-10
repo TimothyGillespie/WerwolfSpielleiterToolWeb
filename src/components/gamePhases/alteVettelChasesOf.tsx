@@ -13,7 +13,12 @@ import mapKeysToArray from "../../utils/mapKeysToArray";
 class AlteVettelChasesOff extends React.Component<GamePhasePropsI> {
 
     render() {
-        return <div>Wenn wird die alte Vettel für die Nacht vertreiben?</div>;
+        return <div>
+            Wenn wird die alte Vettel für die Nacht vertreiben?
+            <br />
+            <button onClick={() => this.props.nextPhase()}>Weiter</button>
+        </div>;
+
     }
 
 }
