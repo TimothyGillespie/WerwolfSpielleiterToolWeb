@@ -9,6 +9,7 @@ import WerwolveChooseKill from "../gamePhases/werwolvesChooseKill";
 import UrwolfMayTransform from "../gamePhases/urwolfMayTransform";
 import HexeUsesPotions from "../gamePhases/hexeUsesPotions";
 import MagierUsesPotions from "../gamePhases/magierUsesPotions";
+import SeherinSees from "../gamePhases/seherinSees";
 
 class GameStartScreen extends React.Component<GamePhasePropsI, {}> {
 
@@ -32,6 +33,7 @@ class GameStartScreen extends React.Component<GamePhasePropsI, {}> {
             // UrwolfMayTransform,
             HexeUsesPotions,
             MagierUsesPotions,
+            SeherinSees,
 
         ];
         this.props.parentSetState!({upcomingGamePhases: firstNight});
