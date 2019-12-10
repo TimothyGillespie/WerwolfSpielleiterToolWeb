@@ -27,7 +27,7 @@ class AddPlayerForm extends React.Component<PropsI, StateI> {
         return(
             <React.Fragment>
                 <input type="text" value={String(this.state.playerName)} onChange={(ev: React.FormEvent<HTMLInputElement>) => this.setState({playerName: ev.currentTarget.value, processingStatus: APIStatus.NothingExpected})} />
-                <button onClick={() => this.callCreateAPI()}>Erstellen</button><br/><br/>
+                <button onClick={async () => {await this.callCreateAPI(); this.setState({playerName: ""})}}>Erstellen</button><br/><br/>
                 {this.displayPlayerCreationFeedback()}
             </React.Fragment>
         )
