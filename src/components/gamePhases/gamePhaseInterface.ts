@@ -8,7 +8,7 @@ interface GamePhasePropsI {
     playersInTheGame: Map<Player, Status>;
 
     // Game variables
-    diesTonight: Player[];
+    diesTonight: Set<Player>;
 
     turnCounter: number;
     liebende: Player[];

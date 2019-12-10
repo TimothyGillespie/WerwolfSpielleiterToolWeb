@@ -31,8 +31,8 @@ class WerwolvesChooseKill extends React.Component<GamePhasePropsI> {
                 ),
                 "Wenn werden Sie wählen?",
                 (player: Player) => {
-                    const diesTonight = this.props.diesTonight.slice();
-                    diesTonight.push(player);
+                    const diesTonight = new Set<Player>(this.props.diesTonight);
+                    diesTonight.add(player);
                     this.props.parentSetState({diesTonight});
                     //Wolfsjungen dies check and mechanic implementation
                     this.props.nextPhase();
