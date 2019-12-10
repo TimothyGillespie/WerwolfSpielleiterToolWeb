@@ -15,10 +15,19 @@ import setToArray from "../../utils/setToArray";
 class HexeUsesPotions extends React.Component<GamePhasePropsI> {
 
     render() {
-
-        // Needs to implement the use of the two hexe variables
         return <div>
-            {renderPlayerList(
+            {this.renderGoodPotionUsageOptions()}
+            <br />
+            {this.renderBadPotionUsageOptions()}
+            <br />
+            <button onClick={() => this.props.nextPhase()}>Weiter</button>
+        </div>
+    }
+
+
+    private renderGoodPotionUsageOptions(): JSX.Element {
+        if(this.props.hexeGoodPotionAvailable) {
+            return renderPlayerList(
                 setToArray(this.props.diesTonight),
                 "Will she save one who is die?",
                 (player: Player) => {
@@ -26,23 +35,32 @@ class HexeUsesPotions extends React.Component<GamePhasePropsI> {
                     diesTonight.delete(player);
                     this.props.parentSetState({diesTonight, hexeGoodPotionAvailable: false});
                 }
-            )}
+            );
+        }
 
-            {renderPlayerList(
+
+        return <div>(Die Hexe hat ihren guten Trank schon genutzt.)</div>;
+    }
+
+
+    private renderBadPotionUsageOptions(): JSX.Element {
+        if(this.props.hexeBadPotionAvailable) {
+            return renderPlayerList(
                 difference(
                     getAlivePlayers(this.props.playersInTheGame),
                     setToArray(this.props.diesTonight).concat(getAlivePlayersOfRole(this.props.playersInTheGame, Role.HX))
                 ),
-                "Or is she out kill as well? .. or perhaps both?",
+                "Or is she out kill as well?",
                 (player: Player) => {
                     const diesTonight: Set<Player> = new Set<Player>(this.props.diesTonight);
                     diesTonight.add(player);
                     this.props.parentSetState({diesTonight, hexeBadPotionAvailable: false});
                 }
-            )}
-            <br />
-            <button onClick={() => this.props.nextPhase()}>Weiter</button>
-        </div>
+            )
+        }
+
+        return <div>(Die Hexe hat ihren tödlichen Trank schon genutzt.)</div>;
+
     }
 
 }

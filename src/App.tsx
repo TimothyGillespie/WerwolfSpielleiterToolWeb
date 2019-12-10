@@ -46,12 +46,12 @@ class App extends React.Component<{}, MasterState> {
         oldmanDiedOnce: false,
 
         // Hexentränke
-        hexeGoodPotionAvailable: false,
-        hexeBadPotionAvailable: false,
+        hexeGoodPotionAvailable: true,
+        hexeBadPotionAvailable: true,
 
         //Magiertränke
-        magierGoodPotionAvailable: false,
-        magierBadPotionAvailable: false,
+        magierGoodPotionAvailable: true,
+        magierBadPotionAvailable: true,
 
         doppelgangerCopies: null,
     }
