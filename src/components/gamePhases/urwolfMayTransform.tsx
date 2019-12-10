@@ -24,7 +24,7 @@ class UrwolfMayTransform extends React.Component<GamePhasePropsI> {
         // Yes and No button
         // It is possible for the werwolves to kill many players
         return <div>
-            Will {getAlivePlayersOfRole(this.props.playersInTheGame, Role.UW)[0].getName()} transform the werwolves prey {this.props.diesTonight[0]}?
+            Will {getAlivePlayersOfRole(this.props.playersInTheGame, Role.UW)[0].getName()} transform the werwolves prey {/* Show werwolve victims here */}?
 
         </div>;
     }
