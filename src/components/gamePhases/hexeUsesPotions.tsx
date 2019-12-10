@@ -33,7 +33,7 @@ class HexeUsesPotions extends React.Component<GamePhasePropsI> {
                     getAlivePlayers(this.props.playersInTheGame),
                     setToArray(this.props.diesTonight).concat(getAlivePlayersOfRole(this.props.playersInTheGame, Role.HX))
                 ),
-                "Or she is out kill as well? .. or perhaps both?",
+                "Or is she out kill as well? .. or perhaps both?",
                 (player: Player) => {
                     const diesTonight: Set<Player> = new Set<Player>(this.props.diesTonight);
                     diesTonight.add(player);
