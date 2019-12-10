@@ -138,6 +138,10 @@ class PlayerAdmin extends React.Component<PropsI, StateI> {
         // See "removePlayerFromDatabase()"
         await this.props.parentSetState({playersInTheGame});
         this.props.parentSetState({playersInTheGame});
+
+        // Insider easter egg
+        if(player.getName() === "Lars")
+            alert("Ups, der ist schon tot.");
     }
 }
 
