@@ -6,7 +6,7 @@ import DoppelgangerChoses from "../gamePhases/doppelgangerChoses";
 import WerwolvesSeeEachOther from "../gamePhases/werwolvesSeeEachOther";
 import LeibwachterProtects from "../gamePhases/leibwachterProtects";
 import WerwolveChooseKill from "../gamePhases/werwolvesChooseKill";
-import UrwolfMayTransform from "../gamePhases/UrwolfMayTransform";
+import UrwolfMayTransform from "../gamePhases/urwolfMayTransform";
 
 class GameStartScreen extends React.Component<GamePhasePropsI, {}> {
 
