@@ -49,6 +49,8 @@ class App extends React.Component<{}, MasterState> {
         //Magiertränke
         magierGoodPotionAvailable: false,
         magierBadPotionAvailable: false,
+
+        doppelgangerCopies: null,
     }
 
     async componentDidMount() {

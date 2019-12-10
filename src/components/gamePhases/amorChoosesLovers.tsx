@@ -13,7 +13,7 @@ class AmorChoosesLovers extends React.Component<GamePhasePropsI, {}> {
 
 
     render() {
-        if(this.props.liebende.length == 2) {
+        if(this.props.liebende.length >= 2) {
             return <div>
                 {renderPlayerList(this.props.liebende, "Die Liebenden", () => {})}
                 <button onClick={() => this.props.nextPhase()}>Nächste Runde </button>

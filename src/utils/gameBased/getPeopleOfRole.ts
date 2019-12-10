@@ -8,7 +8,7 @@ function getPeopleOfRole(playersInTheGame: Map<Player, Status>, role: Role): Pla
     const result: Player[] = [];
 
     playersInTheGame.forEach((status : Status, player: Player) =>  {
-        if(status.role = role)
+        if(status.role === role)
             result.push(player);
     })
 

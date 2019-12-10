@@ -29,6 +29,8 @@ interface GamePhasePropsI {
     //Magiertränke
     magierGoodPotionAvailable: boolean;
     magierBadPotionAvailable: boolean;
+
+    doppelgangerCopies: Player | null;
 }
 
 export default GamePhasePropsI;
