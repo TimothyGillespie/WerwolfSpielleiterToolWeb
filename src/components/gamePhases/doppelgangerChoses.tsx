@@ -6,10 +6,10 @@ import Role from "../../classes/role";
 import GamePhasePropsI from "./gamePhaseInterface";
 import renderPlayerList from "../../utils/renderPlayerList";
 import getPeopleOfRole from "../../utils/gameBased/getPeopleOfRole";
+import changePlayerRole from "../../utils/gameBased/changePlayerRole";
 
 import difference from "../../utils/arrayHandling/difference";
 import mapKeysToArray from "../../utils/mapKeysToArray";
-import changePlayerRole from "../../utils/gameBased/changePlayerRole";
 
 interface StateI {
     chose: boolean;

@@ -11,6 +11,7 @@ import Navigation from "./components/navigation";
 import Welcome from "./components/welcome";
 import PlayerAdmin from "./components/playerAdmin";
 import Game from "./components/game/game";
+import AssignRoles from "./components/game/assignRoles";
 
 import {fetchPlayers} from "./utils/databaseAPIHandler";
 
@@ -70,6 +71,9 @@ class App extends React.Component<{}, MasterState> {
                     </Route>
                     <Route path="/game">
                         <Game parentSetState={(newState: any) => this.setState(newState)} nextPhase={() => this.nextPhase()} {...this.state}/>
+                    </Route>
+                    <Route path="/assignRoles">
+                        <AssignRoles parentSetState={(newState: any) => this.setState(newState)} nextPhase={() => this.nextPhase()} {...this.state} />
                     </Route>
                 </Switch>
             </Router>
