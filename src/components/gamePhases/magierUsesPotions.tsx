@@ -42,6 +42,9 @@ class MagierUsesPotions extends React.Component<GamePhasePropsI> {
                     this.props.parentSetState({diesTonight, magierBadPotionAvailable: false});
                 }
             )}
+
+            <br />
+            <button onClick={() => this.props.nextPhase()}>Weiter</button>
         </div>
     }
 

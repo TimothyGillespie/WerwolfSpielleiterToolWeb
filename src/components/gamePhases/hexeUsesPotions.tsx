@@ -40,6 +40,8 @@ class HexeUsesPotions extends React.Component<GamePhasePropsI> {
                     this.props.parentSetState({diesTonight, hexeBadPotionAvailable: false});
                 }
             )}
+            <br />
+            <button onClick={() => this.props.nextPhase()}>Weiter</button>
         </div>
     }
 
