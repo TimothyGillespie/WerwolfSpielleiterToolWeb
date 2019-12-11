@@ -40,6 +40,16 @@ class EndOfTheNight extends React.Component<GamePhasePropsI> {
     }
 
 
+    render() {
+        return <div>
+
+        Heute starben:
+        {(this.renderPlayerDiedList())}
+
+        </div>
+    }
+
+
 
     private kill(dyingPlayer: Player, checkLovers = true): void {
 
@@ -115,4 +125,23 @@ class EndOfTheNight extends React.Component<GamePhasePropsI> {
         // Finally set the player status to dead
         this.props.playersInTheGame.get(dyingPlayer)!.alive = false;
     }
+
+    private renderPlayerDiedList(): JSX.Element[] {
+        const output: JSX.Element[] = [];
+
+        this.props.diesTonight.forEach(
+            (dyingPlayer: Player) => {
+                output.push(<li>
+                    {dyingPlayer.getName()}
+                    {getPlayersRole(this.props.playersInTheGame, dyingPlayer)}
+                    </li>);
+            }
+        );
+
+        return output;
+    }
+
+
 }
+
+export default EndOfTheNight;
