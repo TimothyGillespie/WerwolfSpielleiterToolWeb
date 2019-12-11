@@ -132,8 +132,7 @@ class EndOfTheNight extends React.Component<GamePhasePropsI> {
         this.props.diesTonight.forEach(
             (dyingPlayer: Player) => {
                 output.push(<li>
-                    {dyingPlayer.getName()}
-                    {getPlayersRole(this.props.playersInTheGame, dyingPlayer)}
+                    {dyingPlayer.getName()} - {getPlayersRole(this.props.playersInTheGame, dyingPlayer)}
                     </li>);
             }
         );

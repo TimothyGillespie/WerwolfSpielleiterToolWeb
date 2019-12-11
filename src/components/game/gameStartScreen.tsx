@@ -11,6 +11,7 @@ import HexeUsesPotions from "../gamePhases/hexeUsesPotions";
 import MagierUsesPotions from "../gamePhases/magierUsesPotions";
 import SeherinSees from "../gamePhases/seherinSees";
 import AlteVettelChasesOf from "../gamePhases/alteVettelChasesOf"
+import EndOfTheNight from "../gamePhases/endOfTheNight";
 
 class GameStartScreen extends React.Component<GamePhasePropsI, {}> {
 
@@ -36,6 +37,7 @@ class GameStartScreen extends React.Component<GamePhasePropsI, {}> {
             MagierUsesPotions,
             SeherinSees,
             AlteVettelChasesOf,
+            EndOfTheNight,
         ];
         this.props.parentSetState!({upcomingGamePhases: firstNight});
     }
