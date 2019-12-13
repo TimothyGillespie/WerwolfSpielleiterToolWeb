@@ -6,6 +6,7 @@ import Role from "../../classes/role";
 import GamePhasePropsI from "./gamePhaseInterface";
 import renderPlayerList from "../../utils/renderPlayerList";
 import getAlivePlayersOfRole from "../../utils/gameBased/getAlivePlayersOfRole";
+import getAliveRoles from "../../utils/gameBased/getAliveRoles";
 
 import difference from "../../utils/arrayHandling/difference";
 import mapKeysToArray from "../../utils/mapKeysToArray";
@@ -14,6 +15,13 @@ import mapKeysToArray from "../../utils/mapKeysToArray";
 class LeibwachterProtects extends React.Component<GamePhasePropsI, {}> {
 
     render() {
+
+        if(!getAliveRoles(this.props.playersInTheGame).has(Role.L)){
+          this.props.nextPhase();
+          return <div></div>;
+        }
+
+
         return <div>
             Wenn wird der Leibwächter {(getAlivePlayersOfRole(this.props.playersInTheGame, Role.L)[0]).getName()} diese Nacht schützen?
             <br />
@@ -39,7 +47,7 @@ class LeibwachterProtects extends React.Component<GamePhasePropsI, {}> {
     private renderWhoCantBeProtected(): JSX.Element {
         // In this situation it refers to last night
         if(this.props.protectedThisNight)
-            return <div>Er hat letzte nacht {this.props.protectedThisNight} geschützt und kann diese Person nicht nochmal schützen.</div>; 
+            return <div>Er hat letzte nacht {this.props.protectedThisNight} geschützt und kann diese Person nicht nochmal schützen.</div>;
 
         return <React.Fragment></React.Fragment>;
     }

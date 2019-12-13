@@ -8,6 +8,7 @@ import renderPlayerList from "../../utils/renderPlayerList";
 import getAlivePlayers from "../../utils/gameBased/getAlivePlayers";
 import getAlivePlayersOfRole from "../../utils/gameBased/getAlivePlayersOfRole";
 import getPlayersRole from "../../utils/gameBased/getPlayersRole";
+import getAliveRoles from "../../utils/gameBased/getAliveRoles";
 
 import difference from "../../utils/arrayHandling/difference";
 import mapKeysToArray from "../../utils/mapKeysToArray";
@@ -42,7 +43,6 @@ class EndOfTheNight extends React.Component<GamePhasePropsI> {
 
     render() {
         return <div>
-
         Heute starben:
         {(this.renderPlayerDiedList())}
 
