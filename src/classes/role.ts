@@ -1,7 +1,7 @@
 enum Role{
-    
-    HX = "Hexe",
+
     DB = "Dorfbewohner",
+    HX = "Hexe",
     S = "Seher",
     SL = "Seherlehrling",
     A = "Amor",

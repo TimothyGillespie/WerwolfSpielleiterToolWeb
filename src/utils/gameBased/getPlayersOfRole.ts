@@ -3,12 +3,12 @@ import Role from "../../classes/role";
 import Status from "../../classes/status";
 
 
-function getPeopleOfRole(playersInTheGame: Map<Player, Status>, role: Role): Player[] {
+function getPlayersOfRole(playersInTheGame: Map<Player, Status>, role: Role): Player[] {
 
     const result: Player[] = [];
 
     playersInTheGame.forEach((status : Status, player: Player) =>  {
-        if(status.role = role)
+        if(status.role === role)
             result.push(player);
     })
 
@@ -17,4 +17,4 @@ function getPeopleOfRole(playersInTheGame: Map<Player, Status>, role: Role): Pla
 
 }
 
-export default getPeopleOfRole;
+export default getPlayersOfRole;

@@ -11,6 +11,7 @@ import Navigation from "./components/navigation";
 import Welcome from "./components/welcome";
 import PlayerAdmin from "./components/playerAdmin";
 import Game from "./components/game/game";
+import AssignRoles from "./components/game/assignRoles";
 
 import {fetchPlayers} from "./utils/databaseAPIHandler";
 
@@ -27,6 +28,32 @@ class App extends React.Component<{}, MasterState> {
         registeredPlayers: [],
         playersInTheGame: new Map<Player, Status>(),
         upcomingGamePhases: [],
+
+        // Game variables
+        diesTonight: new Set<Player>(),
+
+        turnCounter: 0,
+        liebende: [],
+        mussRaus: null,
+        protectedThisNight: null,
+        priesterProtected: null,
+        prinz: null,
+        unruheGestifted: false,
+
+        rostigeLanzeRevengeNextNight: false,
+        harterBurscheDiesNextNight: false,
+        aussaetzigerGetsRoleNextNight: false,
+        oldmanDiedOnce: false,
+
+        // Hexentränke
+        hexeGoodPotionAvailable: true,
+        hexeBadPotionAvailable: true,
+
+        //Magiertränke
+        magierGoodPotionAvailable: true,
+        magierBadPotionAvailable: true,
+
+        doppelgangerCopies: null,
     }
 
     async componentDidMount() {
@@ -47,6 +74,9 @@ class App extends React.Component<{}, MasterState> {
                     <Route path="/game">
                         <Game parentSetState={(newState: any) => this.setState(newState)} nextPhase={() => this.nextPhase()} {...this.state}/>
                     </Route>
+                    <Route path="/assignRoles">
+                        <AssignRoles parentSetState={(newState: any) => this.setState(newState)} nextPhase={() => this.nextPhase()} {...this.state} />
+                    </Route>
                 </Switch>
             </Router>
         </div>
@@ -64,7 +94,8 @@ class App extends React.Component<{}, MasterState> {
   }
 
   private nextPhase(): void {
-      
+      const cut: React.ComponentType<GamePhasePropsI>[] = this.state.upcomingGamePhases.slice(1);
+      this.setState({upcomingGamePhases: cut});
   }
 
 }

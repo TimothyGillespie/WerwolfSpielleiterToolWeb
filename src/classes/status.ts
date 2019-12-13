@@ -2,7 +2,7 @@ import Role from "./role";
 
 class Status {
     alive: boolean = true
-    role: Role;
+    role: Role = Role.DB;
 
     constructor(role: Role) {
         this.role = role;
