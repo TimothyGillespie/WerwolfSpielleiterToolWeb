@@ -1,0 +1,49 @@
+shouldThisePhaseStart(this.props.playersInTheGame, this.props.doppelganger, this.props.existedInTheGame //Rolle\\): boolean
+
+Wann soll eine Phase angezeigt werden?:
+
+exists(Rolle) ||
+this.props.existedInTheGame.has(Role) &&
+!dead(this.props.doppelganger)
+
+Wann kann ein Doppelgänger die haben?:
+
+Doppelgänger ist nicht tot
+
+
+
+
+Annahmen: Doppelgänger höchstens einmal
+
+
+
+(Spielschlüssel eingeben)
+Fügt Spieler dem Spiel hinzu
+Optionen -> Welche Charatere werden genutzt
+
+X:= Liste von Standardabfragen für Spielerrollen
+X = difference(allRoles, {amor, doppelganger, werwolf, einsamerWolf, Urwolf, Wolfsjunges)
+
+
+Spiel starten -> Erste Nacht (Zuweisungen und auch nicht Zuweisungen)
+nonSpoilSkip := Ein Skip der unter Umständen dazu führt, dass Informationen preis gegeben werden wegen dem Doppelgänger (Logik siehe oben)
+
+! := Wiederverwendet in anderen Nächten
+
+->[X da?] X setzen (Überspringen möglich; automatisches Überspringen wenn gesetzt) = (standardartig)
+->[Ist Amor da?] Amor setzen (standardartig)
+[Ist Amor da? 2] Liebespaar auswählen (->Überspringen muss möglich sein)
+[Ist Doppelgänger da?] Doppelgänger setzen. Doppelgänger wählt (-> standardartig)
+![Ist Leibwächter da? 2] Leibwächter schützt. (->nonSpoilSkip)
+[Werwölfe erwachen!] Werwölfe setzen (->Nächste Phase erst, wenn mindestens einer gesetzt)
+![Werwölfe töten!] Opfer wählen. (Nicht überspringbar) (->Wolfsjungenrache)
+[Einsamerwolf da?] Einsamer Wolf setzen aus Liste von Werwölfen. (standartig)
+[Urwolf da?] Urwolf setzen aus Liste von Werwölfen. (standardartig)
+->![Urwolf da?] Urwolf wählt aus ob transformiert. (nonSpoilSkip, already transformed?)
+->[Wolfsjunges da?] Wolfsjunges setzen aus Liste von Werwölfen. (standardartig)
+->![Seher da?] Darf sehen. (nonSpoilSkip) (Kann zwei sein, wenn Doppelgänger = Seher && Seherlehrling im Spiel)
+![Hexe] Darf Tränke einsetzen (->nonSpoilSkip)
+![Magier] Darf Tränken einsetzen (->sieht Tötung und Wiederbelebung der Hexe nicht) (Idee: merge phase der beiden)
+->![alteVettel] Verweißt jemanden (->Überspringbar)
+->![Unruhestifterin da?] Willst Du Unruhe stiften (nonSpoilSkip || zwei mal unruhe gestiftet)
+

@@ -1,6 +1,7 @@
 {
   "name": "werwolf",
   "version": "0.1.0",
+  "homepage": "https://userpages.uni-koblenz.de/~tigill/build/",
   "private": true,
   "dependencies": {
     "@types/jest": "24.0.23",
