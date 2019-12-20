@@ -1,0 +1,6 @@
+div#roleName {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding: 30px;
+    font-size: 28pt;
+}
