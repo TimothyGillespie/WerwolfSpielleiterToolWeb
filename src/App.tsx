@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import Player from "./classes/player";
 import Status from "./classes/status";
+import Role from "./classes/role";
 
 import GamePhasePropsI from "./components/gamePhases/gamePhaseInterface";
 
@@ -12,6 +13,7 @@ import Welcome from "./components/welcome";
 import PlayerAdmin from "./components/playerAdmin";
 import Game from "./components/game/game";
 import AssignRoles from "./components/game/assignRoles";
+import Settings from "./components/settings";
 
 import {fetchPlayers} from "./utils/databaseAPIHandler";
 
@@ -27,6 +29,7 @@ class App extends React.Component<{}, MasterState> {
     state = {
         registeredPlayers: [],
         playersInTheGame: new Map<Player, Status>(),
+        possibleRoles: new Set<Role>(),
         upcomingGamePhases: [],
 
         // Game variables
@@ -76,6 +79,9 @@ class App extends React.Component<{}, MasterState> {
                     </Route>
                     <Route path="/assignRoles">
                         <AssignRoles parentSetState={(newState: any) => this.setState(newState)} nextPhase={() => this.nextPhase()} {...this.state} />
+                    </Route>
+                    <Route path="/settings">
+                        <Settings parentSetState={(newState: any) => this.setState(newState)} {...this.state}/>
                     </Route>
                 </Switch>
             </Router>

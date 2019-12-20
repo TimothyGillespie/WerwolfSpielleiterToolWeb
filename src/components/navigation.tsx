@@ -10,6 +10,7 @@ class Navigation extends React.Component<{}, {}> {
                 <li><Link to="/players">Spieler</Link></li>
                 <li><Link to="/game">Spiel</Link></li>
                 <li><Link to="/assignRoles">Rollenzuweisung</Link></li>
+                <li><Link to="/settings">Einstellungen</Link></li>
             </div>
         );
     }

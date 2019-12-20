@@ -1,11 +1,13 @@
 import Player from "../../classes/player";
 import Status from "../../classes/status";
+import Role from "../../classes/role";
 
 interface GamePhasePropsI {
     parentSetState(newState: any): void;
     nextPhase(): void;
 
     playersInTheGame: Map<Player, Status>;
+    possibleRoles: Set<Role>;
 
     // Game variables
     diesTonight: Set<Player>;
