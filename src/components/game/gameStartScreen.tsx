@@ -34,7 +34,8 @@ class GameStartScreen extends React.Component<GamePhasePropsI, {}> {
             // Not yet implemented
             // UrwolfMayTransform,
             HexeUsesPotions,
-            MagierUsesPotions,
+            // Needs fixes; see issue #17 to which the answer is no
+            // MagierUsesPotions,
             SeherinSees,
             AlteVettelChasesOf,
             EndOfTheNight,
